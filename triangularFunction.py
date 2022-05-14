@@ -1,8 +1,11 @@
+from ast import Pass
 import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
+from sympy import symbols
+import math as m
 
 st.markdown("<h1 style='text-align: center; color: white;font-size: 60px'>Triangular Function</h1>",
             unsafe_allow_html=True)
@@ -106,8 +109,10 @@ st.pyplot(fig2)
 
 st.title("Rule Base")
 
-data = [{'Little Grease': 'Very Less (Time)', 'Medium Grease': 'Medium (Time)', 'High Grease': 'High (Time)'}, {'Little Grease': 'Less (Time)',
-                                                                                                                'Medium Grease': 'High (Time)', 'High Grease': 'Very High (Time)'}, {'Little Grease': 'Medium (Time)', 'Medium Grease': 'High (Time)', 'High Grease': 'Very High (Time)'}]
+data = [{'Little Grease': 'Very Less (Time)', 'Medium Grease': 'Medium (Time)', 'High Grease': 'High (Time)'}, {'Little Grease': 'Less (Time)', 'Medium Grease': 'High (Time)',
+                                                                                                                'High Grease': 'Very High (Time)'}, {'Little Grease': 'Medium (Time)', 'Medium Grease': 'High (Time)', 'High Grease': 'Very High (Time)'}]
+
+
 df = pd.DataFrame(data, index=['Little Dirt',
                   'Medium Dirt', 'High Dirt'])
 
@@ -287,6 +292,25 @@ if input2 == 50:
                  min(hd, sg), min(hd, mg), min(hd, hg))
 
 st.title("Output (Rule Strength)")
+
+if op == min(sd, sg):
+    st.write("The output is in (Little Dirt, Little Grease) i.e. Very Less Time")
+if op == min(sd, mg):
+    st.write("The output is in (Little Dirt, Medium Grease) i.e. Medium Time")
+if op == min(sd, hg):
+    st.write("The output is in (Little Dirt, High Grease) i.e. High Time")
+if op == min(md, sg):
+    st.write("The output is in (Medium Dirt, Little Grease) i.e. Less Time")
+if op == min(md, mg):
+    st.write("The output is in (Medium Dirt, Medium Grease) i.e. High Time")
+if op == min(md, hg):
+    st.write("The output is in (Medium Dirt, High Grease) i.e. Very High Time")
+if op == min(hd, sg):
+    st.write("The output is in (High Dirt, Little Grease) i.e. Medium Time")
+if op == min(hd, mg):
+    st.write("The output is in (High Dirt, Medium Grease) i.e. High Time")
+if op == min(hd, hg):
+    st.write("The output is in (High Dirt, High Grease) i.e. Very High Time")
 
 x1 = np.array([10, 0])
 y1 = np.array([0, 1])
